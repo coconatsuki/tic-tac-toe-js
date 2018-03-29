@@ -6,9 +6,6 @@
   "scripts": {
     "build": "webpack --progress --watch"
   },
-  "browserslist": [
-    "> 1%"
-  ],
   "author": "coconatsuki",
   "license": "ISC",
   "babel": {

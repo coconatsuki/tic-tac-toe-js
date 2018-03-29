@@ -1,4 +1,4 @@
-export default const Player = (name, symbol) => {
+const Player = (name, symbol) => {
   // const play = () => ;
   return { name, symbol };
 };
@@ -16,3 +16,5 @@ export default const Player = (name, symbol) => {
 // console.log(jeff.name); // 'jeff'
 //
 // jeff.sayHello(); // calls the function and logs 'hello!'
+
+export default Player
