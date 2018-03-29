@@ -1,4 +1,4 @@
-export default const Board = (() => {
+const Board = (() => {
   const grid = [['', '', ''], ['', '', ''], ['', '', '']];
   const col1 = [grid[0][1], grid[1][1], grid[2][1]];
   const col2 = [grid[0][2], grid[1][2], grid[2][3]];
@@ -60,3 +60,5 @@ export default const Board = (() => {
   return { allBoxes, grid, isAvailable, evenConditions, fillGridForTesting,
     resetGrid, victoryConditions, writeSymbol };
 })();
+
+export default Board;

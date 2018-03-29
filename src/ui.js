@@ -1,4 +1,4 @@
-export default const Ui = (() => {
+const Ui = (() => {
   const victoryMessage = function(playerName) {
     return `${playerName} wins the game! Want to play again?`;
   };
@@ -26,3 +26,5 @@ export default const Ui = (() => {
   };
   return { evenMessage, highlightListener, removeHighlightListener, victoryMessage, squares };
 })();
+
+export default Ui;
