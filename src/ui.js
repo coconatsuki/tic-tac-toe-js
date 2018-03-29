@@ -27,4 +27,8 @@ const Ui = (() => {
   return { evenMessage, highlightListener, removeHighlightListener, victoryMessage, squares };
 })();
 
+<<<<<<< HEAD
 export default Ui
+=======
+export default Ui;
+>>>>>>> 80a47a4caaa6434362126994ba5eb0fabf11b9fb

@@ -9,6 +9,5 @@ const Game = (() => {
 })();
 
 
-
 Ui.highlightListener();
 Ui.removeHighlightListener();
