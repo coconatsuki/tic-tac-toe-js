@@ -34,14 +34,6 @@ const Board = (() => {
     grid[x][y] = symbol;
   };
 
-  const fillGridForTesting = function() {
-    grid.forEach((row, rowIndex) => {
-      row.forEach((col, colIndex) => {
-        grid[rowIndex][colIndex] = 'X';
-      });
-    });
-  };
-
   const resetGrid = function() {
     grid.forEach((row, rowIndex) => {
       row.forEach((col, colIndex) => {
@@ -69,20 +61,13 @@ const Board = (() => {
     return false;
   };
 
-  const availableSquare = function(position) {
-    const [x, y] = position;
-    return grid[x][y] === 'E';
-  };
-
   return {
     allBoxes,
     grid,
     evenConditions,
-    fillGridForTesting,
     resetGrid,
     victoryConditions,
     writeSymbol,
-    availableSquare,
   };
 })();
 

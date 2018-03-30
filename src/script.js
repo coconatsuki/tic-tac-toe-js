@@ -11,8 +11,7 @@ const Game = (() => {
   const playableSquares = document.querySelectorAll('button.playable');
   const resetButton = document.getElementById('reset');
   const newGameButton = document.getElementById('new-game');
-
-    let player1 = '';
+  let player1 = '';
   let player2 = '';
   let actualPlayer = player1;
 
@@ -96,7 +95,7 @@ const Game = (() => {
   const resetButtonListener = function() {
     resetButton.addEventListener('click', function() {
       Ui.cleanBoard();
-      if (actualPlayer.symbol === 'O') { togglePlayer() };
+      if (actualPlayer.symbol === 'O') { togglePlayer(); }
       Ui.playerTurnMessage(actualPlayer.name);
       allSquaresAvailable();
     });
