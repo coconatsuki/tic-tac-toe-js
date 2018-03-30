@@ -8,8 +8,10 @@ const Game = (() => {
   const nameInput1 = document.getElementById('name1');
   const nameInput2 = document.getElementById('name2');
   const squares = document.querySelectorAll('button.play-button');
-  const messageDisplayer = document.getElementById('message-display');
-  let player1 = '';
+  const resetButton = document.getElementById('reset');
+  const newGameButton = document.getElementById('new-game');
+
+    let player1 = '';
   let player2 = '';
   let actualPlayer = player1;
 
@@ -21,33 +23,17 @@ const Game = (() => {
 
   const createPlayers = function(p1, p2) {
     player1 = Player(p1, 'X');
-    player2 = Player(p2, '0');
+    player2 = Player(p2, 'O');
     actualPlayer = player1;
   };
-
-  const messageDisplay = function() {
-    messageDisplayer.innerHTML = `It's ${actualPlayer.name}'s turn!'`;
-  }
 
   const nameButtonListener = function() {
     nameButton.addEventListener('click', function() {
       const names = getPlayersNames();
       Ui.displayBoardSection();
       createPlayers(names[0], names[1]);
-      messageDisplay();
+      Ui.playerTurnMessage(actualPlayer.name);
     });
-  };
-
-  const squareListener = function() {
-    for (const square of squares) {
-      square.addEventListener('click', function() {
-        const squareId = getPositionFromSquareElement(square);
-        Board.writeSymbol(squareId, actualPlayer.symbol);
-        square.classList.add('black-color');
-        Ui.boardDisplay();
-        togglePlayer();
-      });
-    }
   };
 
   const getPositionFromSquareElement = function(square) {
@@ -57,26 +43,63 @@ const Game = (() => {
   const togglePlayer = function() {
     [player1, player2] = [player2, player1];
     actualPlayer = player1;
-    messageDisplay();
   };
 
-  const addSpaceToSquare = function() {
-    for (const square of squares) {
-      Ui.boardDisplay();
+  const checkVictory = function() {
+    return Board.victoryConditions();
+  };
+
+  const play = function(squareId, square) {
+    Board.writeSymbol(squareId, actualPlayer.symbol);
+    square.classList.add('black-color');
+    Ui.boardDisplay();
+    if (checkVictory()) {
+      Ui.victoryMessage(actualPlayer.name);
+    } else {
+      togglePlayer();
+      Ui.playerTurnMessage(actualPlayer.name);
     }
   };
 
+  const squareListener = function() {
+    for (const square of squares) {
+      square.addEventListener('click', function() {
+        const squareId = getPositionFromSquareElement(square);
+        if (Board.availableSquare(squareId)) {
+          play(squareId, square);
+        }
+      });
+    }
+  };
 
+  const resetButtonListener = function() {
+    resetButton.addEventListener('click', function() {
+      Ui.cleanBoard();
+      if (actualPlayer.symbol === 'O') { togglePlayer() };
+      Ui.playerTurnMessage(actualPlayer.name);
+    });
+  };
 
-  return { addSpaceToSquare, nameButtonListener, player1, player2, squareListener, getPositionFromSquareElement };
+  const newGameButtonListener = function() {
+    newGameButton.addEventListener('click', function() {
+      Ui.cleanBoard();
+      Ui.displayPlayersInterface();
+    });
+  };
+
+  return {
+    nameButtonListener,
+    squareListener,
+    getPositionFromSquareElement,
+    resetButtonListener,
+    newGameButtonListener,
+  };
 })();
 
 
 Ui.highlightListener();
-Ui.resetButtonListener();
-Ui.newGameButtonListener();
+Ui.addSpaceToSquare();
+Game.resetButtonListener();
+Game.newGameButtonListener();
 Game.nameButtonListener();
 Game.squareListener();
-Game.addSpaceToSquare();
-
-window.game = Game;

@@ -3,13 +3,18 @@ import Board from './board';
 const Ui = (() => {
   const nameSection = document.querySelector('.players-name');
   const boardSection = document.querySelector('.game-board-section');
-  const resetButton = document.getElementById('reset');
-  const newGameButton = document.getElementById('new-game');
-  const victoryMessage = function(playerName) {
-    return `${playerName} wins the game! Want to play again?`;
-  };
+  const messageDisplayer = document.getElementById('message-display');
+
   const evenMessage = 'It\'s a tie, there\'s no winner. Want to play again?';
   const squares = document.querySelectorAll('button.play-button');
+
+  const playerTurnMessage = function(actualPlayerName) {
+    messageDisplayer.innerHTML = `It's ${actualPlayerName}'s turn!'`;
+  };
+
+  const victoryMessage = function(playerName) {
+    messageDisplayer.innerHTML = `${playerName} wins the game! Want to play again?`;
+  };
 
   const highlightListener = function() {
     for (const square of squares) {
@@ -61,25 +66,22 @@ const Ui = (() => {
     boardSection.classList.add('flex');
   };
 
-  const resetButtonListener = function() {
-    resetButton.addEventListener('click', cleanBoard);
-  };
-
-  const newGameButtonListener = function() {
-    newGameButton.addEventListener('click', function() {
-      cleanBoard();
-      displayPlayersInterface();
-    });
+  const addSpaceToSquare = function() {
+    for (const square of squares) {
+      Ui.boardDisplay();
+    }
   };
 
   return {
+    addSpaceToSquare,
     evenMessage,
     highlightListener,
     victoryMessage,
     boardDisplay,
-    resetButtonListener,
-    newGameButtonListener,
-    displayBoardSection
+    displayBoardSection,
+    displayPlayersInterface,
+    playerTurnMessage,
+    cleanBoard,
   };
 })();
 
