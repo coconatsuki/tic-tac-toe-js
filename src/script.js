@@ -25,12 +25,16 @@ const Game = (() => {
     actualPlayer = player1;
   };
 
+  const messageDisplay = function() {
+    messageDisplayer.innerHTML = `It's ${actualPlayer.name}'s turn!'`;
+  }
+
   const nameButtonListener = function() {
     nameButton.addEventListener('click', function() {
       const names = getPlayersNames();
       Ui.displayBoardSection();
       createPlayers(names[0], names[1]);
-      messageDisplayer.innerHTML = `It's ${actualPlayer.name}'s turn!'`;
+      messageDisplay();
     });
   };
 
@@ -53,6 +57,7 @@ const Game = (() => {
   const togglePlayer = function() {
     [player1, player2] = [player2, player1];
     actualPlayer = player1;
+    messageDisplay();
   };
 
   const addSpaceToSquare = function() {
