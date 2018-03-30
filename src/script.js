@@ -8,6 +8,7 @@ const Game = (() => {
   const nameInput1 = document.getElementById('name1');
   const nameInput2 = document.getElementById('name2');
   const squares = document.querySelectorAll('button.play-button');
+  const playableSquares = document.querySelectorAll('button.playable');
   const resetButton = document.getElementById('reset');
   const newGameButton = document.getElementById('new-game');
 
@@ -49,12 +50,30 @@ const Game = (() => {
     return Board.victoryConditions();
   };
 
+  const stopGame = function() {
+    for (const square of playableSquares) {
+      square.classList.remove('playable');
+    }
+  };
+
+  const allSquaresAvailable = function() {
+    for (const square of squares) {
+      if (!square.classList.contains('playable')) {
+        square.classList.add('playable');
+      }
+    }
+  };
+
   const play = function(squareId, square) {
     Board.writeSymbol(squareId, actualPlayer.symbol);
     square.classList.add('black-color');
     Ui.boardDisplay();
     if (checkVictory()) {
       Ui.victoryMessage(actualPlayer.name);
+      stopGame();
+    } else if (Board.evenConditions()) {
+      Ui.evenMessage();
+      stopGame();
     } else {
       togglePlayer();
       Ui.playerTurnMessage(actualPlayer.name);
@@ -64,9 +83,11 @@ const Game = (() => {
   const squareListener = function() {
     for (const square of squares) {
       square.addEventListener('click', function() {
+        if (!this.classList.contains('playable')) { return; }
         const squareId = getPositionFromSquareElement(square);
         if (Board.availableSquare(squareId)) {
           play(squareId, square);
+          square.classList.remove('playable');
         }
       });
     }
@@ -77,6 +98,7 @@ const Game = (() => {
       Ui.cleanBoard();
       if (actualPlayer.symbol === 'O') { togglePlayer() };
       Ui.playerTurnMessage(actualPlayer.name);
+      allSquaresAvailable();
     });
   };
 
@@ -84,6 +106,7 @@ const Game = (() => {
     newGameButton.addEventListener('click', function() {
       Ui.cleanBoard();
       Ui.displayPlayersInterface();
+      allSquaresAvailable();
     });
   };
 

@@ -34,11 +34,6 @@ const Board = (() => {
     grid[x][y] = symbol;
   };
 
-  const isAvailable = function(positionArray) {
-    const [x, y] = positionArray;
-    return grid[x][y] === '';
-  };
-
   const fillGridForTesting = function() {
     grid.forEach((row, rowIndex) => {
       row.forEach((col, colIndex) => {
@@ -82,7 +77,6 @@ const Board = (() => {
   return {
     allBoxes,
     grid,
-    isAvailable,
     evenConditions,
     fillGridForTesting,
     resetGrid,

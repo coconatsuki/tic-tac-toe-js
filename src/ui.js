@@ -4,8 +4,6 @@ const Ui = (() => {
   const nameSection = document.querySelector('.players-name');
   const boardSection = document.querySelector('.game-board-section');
   const messageDisplayer = document.getElementById('message-display');
-
-  const evenMessage = 'It\'s a tie, there\'s no winner. Want to play again?';
   const squares = document.querySelectorAll('button.play-button');
 
   const playerTurnMessage = function(actualPlayerName) {
@@ -14,6 +12,10 @@ const Ui = (() => {
 
   const victoryMessage = function(playerName) {
     messageDisplayer.innerHTML = `${playerName} wins the game! Want to play again?`;
+  };
+
+  const evenMessage = function() {
+    messageDisplayer.innerHTML = 'It\'s a tie, there\'s no winner. Want to play again?';
   };
 
   const highlightListener = function() {

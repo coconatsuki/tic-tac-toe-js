@@ -16,6 +16,9 @@
 .hide {
   display: none; }
 
+.playable {
+  cursor: pointer; }
+
 .players-name {
   flex-direction: column; }
 
