@@ -1,5 +1,5 @@
 const Board = (() => {
-  const grid = [['', '', ''], ['', '', ''], ['', '', '']];
+  const grid = [['E', 'E', 'E'], ['E', 'E', 'E'], ['E', 'E', 'E']];
   const col1 = [grid[0][1], grid[1][1], grid[2][1]];
   const col2 = [grid[0][2], grid[1][2], grid[2][3]];
   const col3 = [grid[0][2], grid[1][2], grid[2][2]];
@@ -19,7 +19,7 @@ const Board = (() => {
   const isAvailable = function(positionArray) {
     const [x, y] = positionArray;
     return grid[x][y] === '';
-  }
+  };
 
   const fillGridForTesting = function() {
     grid.forEach((row, rowIndex) => {
@@ -32,19 +32,17 @@ const Board = (() => {
   const resetGrid = function() {
     grid.forEach((row, rowIndex) => {
       row.forEach((col, colIndex) => {
-        grid[rowIndex][colIndex] = '';
+        grid[rowIndex][colIndex] = 'E';
       });
     });
   };
 
   const victoryConditions = function() {
     for (const row of grid) {
-      if (row.every(box => box === 'X')) { return 'X'; }
-      else if (row.every(box => box === 'O')) { return 'O'; }
+      if (row.every(box => box === 'X')) { return 'X'; } else if (row.every(box => box === 'O')) { return 'O'; }
     }
     for (const col of cols) {
-      if (col.every(box => box === 'X')) { return 'X'; }
-      else if (col.every(box => box === 'O')) { return 'O'; }
+      if (col.every(box => box === 'X')) { return 'X'; } else if (col.every(box => box === 'O')) { return 'O'; }
     }
     if (diag1.every(box => box === 'X')) { return 'X'; }
     if (diag1.every(box => box === 'O')) { return 'O'; }
@@ -54,11 +52,19 @@ const Board = (() => {
   };
 
   const evenConditions = function() {
-    if (allBoxes().every(square => square !== '')) { return true; }
+    if (allBoxes().every(square => square !== 'E')) { return true; }
     return false;
   };
-  return { allBoxes, grid, isAvailable, evenConditions, fillGridForTesting,
-    resetGrid, victoryConditions, writeSymbol };
+  return {
+    allBoxes,
+    grid,
+    isAvailable,
+    evenConditions,
+    fillGridForTesting,
+    resetGrid,
+    victoryConditions,
+    writeSymbol,
+  };
 })();
 
 export default Board;

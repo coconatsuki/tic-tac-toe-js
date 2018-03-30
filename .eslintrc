@@ -3,14 +3,15 @@
     "es6": true,
     "browser": true
   },
-  "extends": "airbnb",
+  "extends": "airbnb-base",
   "rules": {
     "no-console": 1,
     "linebreak-style": 0,
-    "no-unused-vars": 1,
+    "no-unused-vars": 0,
     "no-restricted-syntax": 0,
     "func-names": 0,
     "space-before-function-paren": 0,
-    "strict": 0
+    "prefer-arrow-callback": 0,
+    "no-loop-func": 0
   }
 }

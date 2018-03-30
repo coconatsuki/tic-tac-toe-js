@@ -4,7 +4,7 @@
   display: flex;
 }
 
-.col {
+.flex-col {
   flex-direction: column;
 }
 
@@ -12,8 +12,30 @@
   justify-content: center;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .align-center {
   align-items: center;
+}
+
+.hide {
+  display:none;
+}
+
+// ----------------------------- GENERAL --------------------------- \\
+
+.players-name {
+  flex-direction: column;
+}
+
+.players-name .input-group {
+  width: 30%;
+}
+
+.submit-button, .players-name .input-group {
+  margin: 2% auto;
 }
 
 // ----------------------------- GENERAL --------------------------- \\
@@ -32,6 +54,10 @@ html, body {
   background-color: red;
 }
 
+.black-color {
+  color: black !important;
+}
+
 // ----------------------------- HEADING --------------------------- \\
 
 .title h1 {
@@ -44,25 +70,49 @@ html, body {
 .game-board-section {
   width: 75%;
   margin: 0 auto;
+  flex-direction: column;
+}
+
+.board-and-buttons {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.message-display {
+  width: 100%;
+  height: 10%;
+  border: 1px solid black;
+  padding-left: 1.5%;
+  font-size: 1.5em;
 }
 
 .board {
-  background-color: red;
-  height: 100%;
-  padding: 3%;
-  width: 80%;
+  height: 90%;
+  width: 40%;
 }
 
-.row {
+.roww {
   flex-grow: 1;
   border: 2px solid black;
   border-top: none;
   justify-content: space-between;
-  width: 50%;
+  width: 100%;
+  height: 100%;
   &:first-child {
     border-top: 2px solid black;
   }
   button {
     flex-grow: 1;
+    font-family: $PM-font;
+    font-size: 3em;
   }
+}
+
+.play-button {
+  color: transparent;
+}
+
+.config-button {
+  height: 10%;
 }

@@ -8,32 +8,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Tic-tac-toe</title>
 </head>
-<body class="flex col">
+<body class="flex flex-col">
   <section class="title">
     <h1>Tic Tac Toe</h1>
   </section>
-  <section class="game-board-section flex justify-center">
-    <div class="board flex col align-center">
-      <div class="row-1 row flex">
-        <button class="play-button row1 col1"></button>
-        <button class="play-button row1 col2"></button>
-        <button class="play-button row1 col3"></button>
+
+  <section class="players-name flex">
+    <h2 class="text-center m-4">Enter players names :</h2>
+    <div class="input-group mb-3 flex">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Player 1</span>
       </div>
-      <div class="row-2 row flex">
-        <button class="play-button row2 col1"></button>
-        <button class="play-button row2 col2"></button>
-        <button class="play-button row2 col3"></button>
+      <input type="text" class="form-control" id="name1" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3 flex">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Player 2</span>
       </div>
-      <div class="row-3 row flex">
-        <button class="play-button row3 col1"></button>
-        <button class="play-button row3 col2"></button>
-        <button class="play-button row3 col3"></button>
+      <input type="text" class="form-control"  id="name2" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <button type="button" class="btn btn-primary submit-button flex" id="name-confirm">Play!</button>
+  </section>
+
+
+
+  <section class="game-board-section hide justify-center">
+    <h2 class="message-display m-2" id="message-display"></h2>
+    <div class="board-and-buttons flex justify-around">
+      <button type="button" class="btn btn-primary config-button" id="reset">RESET BOARD</button>
+      <div class="board flex flex-col align-center">
+        <div class="row-1 roww flex">
+          <button class="play-button row1 col1" data-id="00">&nbsp;</button>
+          <button class="play-button row1 col2" data-id="01">&nbsp;</button>
+          <button class="play-button row1 col3" data-id="02">&nbsp;</button>
+        </div>
+        <div class="row-2 roww flex">
+          <button class="play-button row2 col1" data-id="10">&nbsp;</button>
+          <button class="play-button row2 col2" data-id="11">&nbsp;</button>
+          <button class="play-button row2 col3" data-id="12">&nbsp;</button>
+        </div>
+        <div class="row-3 roww flex">
+          <button class="play-button row3 col1" data-id="20">&nbsp;</button>
+          <button class="play-button row3 col2" data-id="21">&nbsp;</button>
+          <button class="play-button row3 col3" data-id="22">&nbsp;</button>
+        </div>
       </div>
+      <button type="button" class="btn btn-primary config-button" id="new-game">NEW GAME</button>
     </div>
   </section>
   <section class="commands">
-    <!-- <button id="new-game">NEW GAME</button> -->
-    <!-- <button id="reset-settings">RESET BOARD</button> -->
+
   </section>
   <script src="bundle.js"></script>
 </body>
