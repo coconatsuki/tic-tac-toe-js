@@ -84,7 +84,7 @@ const Game = (() => {
       square.addEventListener('click', function() {
         if (!this.classList.contains('playable')) { return; }
         const squareId = getPositionFromSquareElement(square);
-        if (Board.availableSquare(squareId)) {
+        if (square.classList.contains('playable')) {
           play(squareId, square);
           square.classList.remove('playable');
         }
